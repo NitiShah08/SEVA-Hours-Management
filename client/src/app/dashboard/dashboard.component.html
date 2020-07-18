@@ -1,0 +1,32 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <div class="col-sm-9">
+    <div class = "container-fluid">
+    <form novalidate id = "final">
+      <div class = "form-group">
+        <label><b>Select Activity</b></label>
+          <li *ngFor = "let event of events">
+            Beach Name: {{event.beach}}<br> Date: {{event.date}}<br>Start Time {{event.starttime}}<br>No of hours: {{event.hours}}<br>
+            <button value="Yes" (click) = "value(event)">Yes</button>
+            <!--<button value="No" (click) = "value(false, event)">No</button><br>
+            <button class="btn btn-primary" type="submit" (click) = "onSelect()">Add Event</button>-->
+          </li>
+       
+      </div>
+     <!-- <button class="btn btn-primary" type="submit" (click) = "onSelect()">Add Event</button>-->
+    </form>
+  </div>
+  </div>
+  <div class="col-sm-3">
+      <button class="btn btn-secondary" type="submit" (click) = "viewHistory()">view History</button>
+
+      <label><b>History</b></label>
+          <li *ngFor = "let his of hist">
+            Beach Name: {{his.beach}}<br> Date: {{his.date}}<br>Start Time {{his.starttime}}<br>No of hours: {{his.hours}}<br>
+          </li>
+  </div>
+</body>
+</html>

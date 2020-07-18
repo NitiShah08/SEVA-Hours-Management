@@ -1,0 +1,84 @@
+<!--<div class="medium-list">
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">Register</div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+      <div class="form-container">
+        <mat-form-field>
+          <input id="name"
+                 matInput
+                 formControlName="name"
+                 [(ngModel)]="user.name"
+                 placeholder="Enter your name" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input id="email"
+                   matInput
+                   formControlName="email"
+                   [(ngModel)]="user.email"
+                   placeholder="Enter your email" />
+          </mat-form-field>
+
+        <mat-form-field>
+            <input id="password"
+                   matInput
+                   formControlName="password"
+                   [(ngModel)]="user.password"
+                   placeholder="Enter your password"
+                   [type]="hide ? 'password':'text'" />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+          </mat-form-field>
+
+          <button mat-button type="submit" 
+                  class="mat-raised-button mat-primary" 
+                  [disabled]="!registerForm.valid">Register</button>
+          <button mat-button routerLink="/login" class="divider">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
+-->
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class = "container-fluid">
+<form [formGroup] = "registerForm" (ngSubmit)="onRegisterSubmit()" novalidate>
+  
+	<div class = "form-group">
+	  <label> UID </label>
+    <input type="text" [(ngModel)]="user.uid" [class.is-invalid]="registerForm.get('uid').invalid && registerForm.get('uid').touched" formControlName="uid" class="form-control">
+ <!-- <small class="text-danger" [class.d-none]="registerForm.get('uid').valid || registerForm.get('uid').untouched">Username is required</small>-->
+	  <div *ngIf="registerForm.get('uid').invalid && registerForm.get('uid').touched">
+      <small *ngIf="registerForm.get('uid').errors?.required" class="text-danger" >UID is required</small>
+      <small *ngIf="registerForm.get('uid').errors?.minlength" class="text-danger">UID is 10 digit number</small>
+    </div>
+  </div>
+  
+	<div class = "form-group">
+	<label>Password</label>
+  <input type="password" [(ngModel)]="user.password" [class.is-invalid]="registerForm.get('password').invalid && registerForm.get('password').touched" formControlName="password" class="form-control">
+    <div *ngIf="registerForm.get('password').invalid && registerForm.get('password').touched">
+      <small *ngIf="registerForm.get('password').errors?.required" class="text-danger" >Password is required</small>
+      <small *ngIf="registerForm.get('password').errors?.minlength" class="text-danger">Should be of atleast 6 letters</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label>Confirm Password</label>
+      <input type="password" [class.is-invalid]="re
+      
+      gistrationForm.errors?.misMatch" formControlName="confirmPassword" class="form-control">
+      <small class="text-danger" *ngIf="registrationForm.errors?.misMatch">Passwords do not match</small>
+    </div>
+
+  <button class="btn btn-primary" type="submit">Register</button>
+  <!--<button (click)="loadApiData()" class="btn btn-secondary ml-2" type="button">Load API Data</button>--->
+</form>
+</div>
+</body>
+</html>
